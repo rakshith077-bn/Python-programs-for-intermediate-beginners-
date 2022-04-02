@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-
+    
 Partition = 'Restuaratns', 'Travelling', 'Shopping', 'Micallaneous'
 sizes = [250, 100, 300, 200]
 fig1, ax1 = plt.subplots()
