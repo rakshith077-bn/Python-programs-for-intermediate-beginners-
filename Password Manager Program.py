@@ -2,7 +2,7 @@ import sqlite3
 from hashlib import sha256
 
 
-ADMIN_PASSWORD = "87UhtftGreq"
+ADMIN_PASSWORD = "RonnyIsTheGreatest"
 
 connect = input("Enter your password: ")
 
@@ -31,7 +31,7 @@ def get_password(admin_pass, service):
 def add_password(service, admin_pass):
     secret_key = get_hex_key(admin_pass, service)
 
-    command = 'INSERT INTO KEYS (PASS_KEY) VALUES (%s);' %('"' + secret_key +'"')        
+    command = 'INSERT INTO KEYS (PASS_KEY) VALUES (%s);' %('"' + secret_key +'"')
     conn.execute(command)
     conn.commit()
     return create_password(secret_key, service, admin_pass)
@@ -40,27 +40,28 @@ if connect == ADMIN_PASSWORD:
     try:
         conn.execute('''CREATE TABLE KEYS
             (PASS_KEY TEXT PRIMARY KEY NOT NULL);''')
-        print("Your account has been created! What would you like to do in it today?")
+        print("Your account has been created!")
+        print("What would you like to today?")
     except:
-        print("You have created a safe, what would you like to do today?")
-    
-    
+        print("You have created a Safe")
+        print("What would you like to do in it today?")
+
+
     while True:
         print("\n"+ "*"*15)
-        print("The set of operations you can perform are given below")
-        print("If you press 'q' then you quit the program")
-        print("If you press 'gp' you can display your password")
-        print("If you press 'sp' then you can remember your passowrd")
+        print("The set of Operations you can perform in your account is as given below.")
+        print("Kindly select only those mentioned")
+        print("If you press 'D' you can display your password")
+        print("If you press 'RP' then you can remember your passowrd")
+        print("If you press 'Q' then you quit the program")
         print("*"*15)
         input_ = input(":")
 
-        if input_ == "q":
+        if input_ == "Q":
             break
-        if input_ == "sp":
-            service = input("What is the name of the service?")
+        if input_ == "RP":
+            service = input("What is the name of the service? ")
             print("\n" + service.capitalize() + " Password has been generated: \n" + add_password(service, ADMIN_PASSWORD))
-        if input_ == "gp":
-            service = input("What is the name of the service?")
+        if input_ == "D":
+            service = input("What is the name of the service? ")
             print("\n" + service.capitalize() + " Password: "+get_password(ADMIN_PASSWORD, service))
-
-
